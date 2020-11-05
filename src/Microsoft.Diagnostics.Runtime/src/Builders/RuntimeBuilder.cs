@@ -1481,8 +1481,11 @@ namespace Microsoft.Diagnostics.Runtime.Builders
             while (i < len)
             {
                 if (name[i] == '`')
+                {
+                    i++;
                     while (i < len && name[i] >= '0' && name[i] <= '9')
                         i++;
+                }
 
                 if (name[i] == ',')
                 {
