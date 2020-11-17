@@ -1485,6 +1485,15 @@ namespace Microsoft.Diagnostics.Runtime.Builders
                     i++;
                     while (i < len && name[i] >= '0' && name[i] <= '9')
                         i++;
+
+                    if (name[i] != '[')
+                    {
+                        var nestedStart = i++;
+                        while (i < len && name[i] != '[')
+                            i++;
+
+                        result.Append(name, nestedStart, i - nestedStart);
+                    }
                 }
 
                 if (name[i] == ',')
